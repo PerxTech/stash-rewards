@@ -1,0 +1,5 @@
+module Stash
+  module Rewards
+    VERSION = "0.1.0"
+  end
+end
