@@ -19,7 +19,8 @@ module Stash
       def headers
         {
           'x-api-key' => @config.api_key,
-          'Authorization' => @config.authorization
+          'Authorization' => @config.authorization,
+          'Content-Type' => 'application/json'
         }
       end
 
