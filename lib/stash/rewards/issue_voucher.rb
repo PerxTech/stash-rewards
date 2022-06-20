@@ -5,33 +5,26 @@ require_relative 'api_wrapper'
 module Stash
   module Rewards
     class IssueVoucher < ApiWrapper
-      def initialize(options = {})
-        super
-      end
-
-      def call(campaign_id, user_identifier)
+      def call(campaign_id:, user_identifier:, reward_id:)
         response = api_wrapper.post("campaigns/#{campaign_id}/users/refId_#{user_identifier}/rewards/order") do |req|
-          req.body = order_payload
+          req.body = order_payload(reward_id)
         end
         parsed_response = JSON.parse(response.body)
-        p parsed_response
-        p response.inspect
-        # raise Stash::Rewards::Error, parsed_response unless response.success?
+        raise Stash::Rewards::Error, parsed_response unless response.success?
 
         parsed_response
       rescue Faraday::Error => e
-        # raise Stash::Rewards::Error, e.message
-        p e.inspect
+        raise Stash::Rewards::Error, e.message
       end
 
       private
 
-      def order_payload
+      def order_payload(reward_id)
         {
           "userInformation": {},
           "products": [
             {
-              "rewardId": "5f361a79986187000833fb82",
+              "rewardId": reward_id,
               "price": 0,
               "quantity": 0
             }

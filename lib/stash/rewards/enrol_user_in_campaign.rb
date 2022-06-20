@@ -5,11 +5,7 @@ require_relative 'api_wrapper'
 module Stash
   module Rewards
     class EnrolUserInCampaign < ApiWrapper
-      def initialize(options = {})
-        super
-      end
-
-      def call(campaign_id, user_identifier)
+      def call(campaign_id:, user_identifier:)
         response = api_wrapper.post("campaigns/#{campaign_id}/users") do |req|
           req.body = user_payload(user_identifier)
         end

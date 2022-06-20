@@ -5,31 +5,25 @@ require_relative 'api_wrapper'
 module Stash
   module Rewards
     class GetRewards < ApiWrapper
-      def initialize(options = {})
-        super
-      end
-
-      def call(campaign_id, page_no, page_size)
+      def call(campaign_id:, page_no: 0, page_size: 500)
         response = api_wrapper.get("campaigns/#{campaign_id}/rewards") do |req|
           req.params = query_params(page_no, page_size)
         end
         parsed_response = JSON.parse(response.body)
-        p parsed_response
-        p response.inspect
-        # raise Stash::Rewards::Error, parsed_response unless response.success?
+
+        raise Stash::Rewards::Error, parsed_response unless response.success?
 
         parsed_response
       rescue Faraday::Error => e
-        # raise Stash::Rewards::Error, e.message
-        p e.inspect
+        raise Stash::Rewards::Error, e.message
       end
 
       private
 
       def query_params(page_no, page_size)
         {
-          'page' => page_no || 0,
-          'size' => page_size || 500
+          page: page_no,
+          size: page_size
         }
       end
     end
