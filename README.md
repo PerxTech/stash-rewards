@@ -22,7 +22,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'stash/rewards'
+
+config = Stash::Rewards::Config.new(api_key: '', authorization: '', api_domain: '')
+
+campaign_id = ''
+user_identifier = ''
+reward_id = ''
+
+rwds_api = Stash::Rewards::GetRewards.new(config)
+rwds_api.call(campaign_id: campaign_id, page_no: 0, page_size: 10)
+
+create_user_api = Stash::Rewards::CreateUser.new(config)
+create_user_api.call(user_identifier: user_identifier)
+
+enrol_user_api = Stash::Rewards::EnrolUserInCampaign.new(config)
+enrol_user_api.call(campaign_id: campaign_id, user_identifier: user_identifier)
+
+issue_voucher = Stash::Rewards::IssueVoucher.new(config)
+issue_voucher.call(campaign_id: campaign_id, user_identifier: user_identifier, reward_id: reward_id)
+```
 
 ## Development
 
