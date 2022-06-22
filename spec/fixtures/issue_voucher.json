@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "rewardId": "2",
+      "redemptionUrl": "nil",
+      "price": 0,
+      "rewardLinkExpiryDate": "2022-12-12 08:08:00",
+      "rewardName": "FreeCoffe",
+      "market": "SG",
+      "currency": "USD",
+      "longDescription": "Description",
+      "instruction": "nil",
+      "description": "The Frasers Digital Gift Card is the best gift for any occasion.",
+      "termsAndConditions": "nil",
+      "rewardImage": {
+        "logo": "https://wogi.devio.co/uploads/brands/113/logo.jpg",
+        "landscape": "https://wogi.devio.co/uploads/brands/113/image.jpg",
+        "portrait": "https://wogi.devio.co/uploads/brands/113/image.jpg",
+        "thumbnail": "https://assets.stashnextgen.io/products/images/glm1nemezn_thumbnail_frasers%20358x358.png"
+      }
+    }
+  ]
+}

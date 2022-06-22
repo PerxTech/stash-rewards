@@ -1,0 +1,15 @@
+{
+  "success": {
+    "data": [
+      {
+        "refId": "200002001176518",
+        "userId": "62ac195f1807e2d597f55848"
+      }
+    ]
+  },
+  "error": {
+    "code": 0,
+    "message": "",
+    "data": []
+  }
+}
