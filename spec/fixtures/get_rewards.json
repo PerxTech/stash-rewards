@@ -1,0 +1,33 @@
+{
+  "page": 0,
+  "size": 500,
+  "totalItems": 1,
+  "totalPage": 1,
+  "items": [
+    {
+      "rewardId": "5f361a79986187000833fb82",
+      "rewardName": "Frasers",
+      "rewardFormat": "DIGITAL",
+      "description": "The Frasers Digital Gift Card is the best gift for any occasion. Now instantly available as a fuss-free digital gift card that presents as an email with an option for the gift card to be scanned and loaded directly to Frasers Property Singapore’s mobile application - Frasers Experience (FRx).",
+      "rewardCode": "g6cr1qi",
+      "market": "SG",
+      "images": {
+        "landscape": "https://wogi.devio.co/uploads/brands/113/image.jpg",
+        "logo": "https://wogi.devio.co/uploads/brands/113/logo.jpg",
+        "portrait": "https://wogi.devio.co/uploads/brands/113/image.jpg",
+        "thumbnail": "https://assets.stashnextgen.io/products/images/glm1nemezn_thumbnail_frasers%20358x358.png"
+      },
+      "denominations": [
+        {
+          "label": "FRASERS $20 eGiftcard",
+          "price": 20,
+          "availability": "OUT_OF_STOCK"
+        }
+      ],
+      "validity": {
+        "duration": 30,
+        "date": null
+      }
+    }
+  ]
+}
