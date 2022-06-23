@@ -1,107 +1,34 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe ::V4::StashService::AddUserToCampaign, type: :service do
-  subject { described_class }
+RSpec.describe Stash::Rewards::EnrolUserInCampaign do
+  let(:config) do
+    Stash::Rewards::Config.new({ api_key: '123', authorization: '456', api_domain: 'https://ext-stg.api.stashnextgen.io' })
+  end
+  let(:enrol_user) { described_class.new(config) }
+  let(:user_identifier) { '200002001176518' }
+  let(:campaign_id) { 'asd123qwe' }
+  let(:enrolment_payload) { [{ refId: user_identifier }] }
 
-  let(:object) { subject.new(identifier) }
-
-  let!(:setting) {
-    create(:setting, key: 'stash_integration',
-                     json_value: {
-                       'base_url' => 'https://ext-stg.api.stashnextgen.io',
-                       'api_key' => SecureRandom.hex(21),
-                       'campaign_id' => SecureRandom.hex(13),
-                       'authorization' => SecureRandom.hex(13)
-                     })
-  }
-
-  let!(:user_account) { create(:user_account) }
-
-  let(:base_url) { setting.json_value['base_url'] }
-  let(:api_key) { setting.json_value['api_key'] }
-  let(:authorization) { setting.json_value['authorization'] }
-  let(:identifier) { user_account.identifier }
-  let(:campaign_id) { setting.json_value['campaign_id'] }
-
-  describe '.initialize' do
-    it 'sets the base_url' do
-      expect(object.setting.json_value['base_url']).to eq base_url
-    end
-
-    it 'sets the api_key' do
-      expect(object.setting.json_value['api_key']).to eq api_key
-    end
-
-    it 'sets the authorization token' do
-      expect(object.setting.json_value['authorization']).to eq authorization
-    end
-
-    it 'receives the identifier' do
-      expect(object.user_account.identifier).to eq identifier
-    end
+  before do
+    stub_request(:post, "https://ext-stg.api.stashnextgen.io/campaigns/#{campaign_id}/users")
+      .with(headers: { 'Accept' => '*/*',
+                       'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                       'Authorization' => '456',
+                       'Content-Type' => 'application/json',
+                       'User-Agent' => 'Faraday v1.10.0',
+                       'X-Api-Key' => '123' },
+            body: enrolment_payload.to_json)
+      .to_return(status: 200, body: fixture_json.to_json, headers: {})
   end
 
   describe '#call' do
-    let(:fixture_path) {
-      File.join(Rails.root, 'spec', 'fixtures', 'dashboard_v4',
-                'stash_integration', 'add_user_to_campaign.json')
-    }
-    let(:fixture_json) do
-      response = nil
-      file = File.open(fixture_path, 'r') do |file|
-        response = JSON.parse(file.read).with_indifferent_access
-      end
-      response
-    end
-
-    before do
-      allow(object).to receive(:add_user).and_return(fixture_json)
-    end
+    let(:fixture_json) { JSON.parse(fixture('enrol_user_in_campaign.json').read) }
 
     it 'returns the user refId' do
-      object.call
-
-      expect(object).to have_received(:add_user).once
-    end
-  end
-
-  describe '#add_user' do
-    let(:fixture_path) {
-      File.join(Rails.root, 'spec', 'fixtures', 'dashboard_v4',
-                'stash_integration', 'add_user_to_campaign.json')
-    }
-    let(:fixture_json) do
-      response = nil
-      file = File.open(fixture_path, 'r') do |file|
-        response = JSON.parse(file.read).with_indifferent_access
-      end
-      response
-    end
-
-    before do
-      headers = {
-        'accept' => 'application/json',
-        'x-api-key' => api_key,
-        'Authorization' => authorization,
-        'Content-Type' => 'application/json',
-        'User-Agent' => 'Ruby'
-      }
-
-      body = [{
-        refId: user_account.identifier
-      }].to_json
-
-      stub_request(:post, "#{base_url}/campaigns/#{campaign_id}/users")
-      .with(
-        headers: headers, body: body
-      )
-      .to_return(status: 200, body: fixture_json.to_json, headers: {})
-    end
-
-    it 'responds with valid response' do
-      expect(object.send(:add_user)).to eq(fixture_json)
+      response = enrol_user.call(campaign_id: campaign_id, user_identifier: user_identifier)
+      expect(response).to eq fixture_json
     end
   end
 end
