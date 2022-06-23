@@ -23,18 +23,18 @@ module Stash
       def user_payload(user_identifier)
         [
           {
-            "refId": user_identifier,
-            "firstName": user_identifier,
-            "lastName": user_identifier,
-            "status": 'ACTIVE',
-            "email": "#{user_identifier}@mailinator.com",
-            "phoneNumber": '+6511112223',
-            "address": {
-              "countryCode": 'US',
-              "street": 'string',
-              "suburb": 'string',
-              "state": 'string',
-              "postCode": 'string'
+            refId: user_identifier,
+            firstName: user_identifier,
+            lastName: user_identifier,
+            status: 'ACTIVE',
+            email: "#{user_identifier}@mailinator.com",
+            phoneNumber: '+6511112223',
+            address: {
+              countryCode: 'US',
+              street: 'string',
+              suburb: 'string',
+              state: 'string',
+              postCode: 'string'
             }
           }
         ].to_json
