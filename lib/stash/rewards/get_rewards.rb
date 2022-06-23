@@ -11,8 +11,6 @@ module Stash
         end
         parsed_response = JSON.parse(response.body)
 
-        p parsed_response.inspect
-
         raise Stash::Rewards::Error, parsed_response['message'] unless response.success?
 
         parsed_response
