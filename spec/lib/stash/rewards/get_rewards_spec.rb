@@ -1,87 +1,47 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe ::V4::StashService::GetRewards, type: :service do
-  subject { described_class }
+RSpec.describe Stash::Rewards::GetRewards do
+  let(:config) do
+    Stash::Rewards::Config.new({ api_key: '123', authorization: '456', api_domain: 'https://ext-stg.api.stashnextgen.io' })
+  end
+  let(:get_rewards) { described_class.new(config) }
+  let(:campaign_id) { 'asd123qwe' }
+  let(:page_no) { 0 }
+  let(:page_size) { 500 }
 
-  let(:object) { subject.new({ base_url: base_url, api_key: api_key, authorization: authorization }) }
-
-  let!(:setting) {
-    create(:setting, key: 'stash_integration',
-                     json_value: {
-                       'base_url' => 'https://ext-stg.api.stashnextgen.io',
-                       'api_key' => SecureRandom.hex(21),
-                       'campaign_id' => SecureRandom.hex(13),
-                       'authorization' => SecureRandom.hex(13)
-                     })
-  }
-
-  let(:base_url) { setting.json_value['base_url'] }
-  let(:api_key) { setting.json_value['api_key'] }
-  let(:authorization) { setting.json_value['authorization'] }
-  let(:campaign_id) { setting.json_value['campaign_id'] }
-
-  describe '.initialize' do
-    it 'sets the base_url' do
-      expect(object.base_url).to eq base_url
-    end
-
-    it 'sets the api_key' do
-      expect(object.api_key).to eq api_key
-    end
-
-    it 'sets the authorization token' do
-      expect(object.authorization).to eq authorization
-    end
+  before do
+    stub_request(:get, "https://ext-stg.api.stashnextgen.io/campaigns/#{campaign_id}/rewards?page=#{page_no}&size=#{page_size}")
+      .with(headers: { 'Accept' => '*/*',
+                       'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                       'Authorization' => '456',
+                       'Content-Type' => 'application/json',
+                       'User-Agent' => 'Faraday v1.10.0',
+                       'X-Api-Key' => '123' })
+      .to_return(status: 200, body: fixture_json.to_json, headers: {})
   end
 
   describe '#call' do
-    let(:fixture_path) { File.join(Rails.root, 'spec', 'fixtures', 'dashboard_v4', 'stash_integration', 'get_rewards.json') }
-    let(:fixture_json) do
-      response = nil
-      file = File.open(fixture_path, 'r') do |file|
-        response = JSON.parse(file.read).with_indifferent_access
+    # TODO: This should probably use VCR gem and make an actual request first to get the
+    # response payload.
+    let(:fixture_json) { JSON.parse(fixture('get_rewards.json').read) }
+
+    context 'when no page_no and page_size are passed' do
+      it 'tries to get the rewards available for the campaign with default params' do
+        response = get_rewards.call(campaign_id: campaign_id)
+        expect(response).to eq fixture_json
       end
-      response
     end
 
-    before do
-      allow(object).to receive(:fetch_rewards).with(campaign_id).and_return(fixture_json)
-    end
+    context 'when passing custom page_no and page_size' do
+      let(:page_no) { 1 }
+      let(:page_size) { 10 }
 
-    it 'returns the rewards list' do
-      object.call(campaign_id)
-
-      expect(object).to have_received(:fetch_rewards).with(campaign_id).once
-    end
-  end
-
-  describe '#fetch_rewards' do
-    let(:fixture_path) { File.join(Rails.root, 'spec', 'fixtures', 'dashboard_v4', 'stash_integration', 'get_rewards.json') }
-    let(:fixture_json) do
-      response = nil
-      file = File.open(fixture_path, 'r') do |file|
-        response = JSON.parse(file.read).with_indifferent_access
+      it 'takes that in account and passes the correct parameters' do
+        response = get_rewards.call(campaign_id: campaign_id, page_no: page_no, page_size: page_size)
+        expect(response).to eq fixture_json
       end
-      response
-    end
-
-    before do
-      stub_request(:get, "#{base_url}/campaigns/#{campaign_id}/rewards")
-      .with(
-        headers: {
-          'x-api-key' => api_key,
-          'Content-Type' => 'application/json',
-          'Authorization' => authorization,
-          'User-Agent' => 'Ruby'
-        }
-      )
-      .to_return(status: 200, body: fixture_json.to_json, headers: {})
-    end
-
-    it 'responds with valid response' do
-      expect(object.send(:fetch_rewards, campaign_id)).to eq(fixture_json)
     end
   end
 end

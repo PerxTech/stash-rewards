@@ -3,8 +3,11 @@
 require 'bundler/setup'
 Bundler.setup
 
-require 'stash/rewards' # and any other gems you need
+require 'stash/rewards'
+require 'rspec/file_fixtures'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
-  # some (optional) config here
 end
+
+WebMock.disable_net_connect!(allow_localhost: true)
