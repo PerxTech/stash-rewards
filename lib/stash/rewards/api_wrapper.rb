@@ -5,6 +5,7 @@ require_relative '../rewards'
 require 'faraday'
 require 'faraday_curl'
 require 'logger'
+require 'json'
 
 module Stash
   module Rewards
