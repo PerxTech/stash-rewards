@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'faraday', '~> 1'
   spec.add_runtime_dependency 'faraday_curl', '~> 0'
 
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rspec-file_fixtures'
-  spec.add_development_dependency 'webmock'
+  spec.add_development_dependency 'rspec', '~> 3'
+  spec.add_development_dependency 'rspec-file_fixtures', '~> 0'
+  spec.add_development_dependency 'webmock', '~> 3'
 end

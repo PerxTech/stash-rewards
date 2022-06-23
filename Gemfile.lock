@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stash-rewards (0.0.1.alpha2)
+    stash-rewards (0.0.1.alpha3)
       faraday (~> 1)
       faraday_curl (~> 0)
 
@@ -69,10 +69,10 @@ PLATFORMS
 
 DEPENDENCIES
   rake (~> 12.0)
-  rspec
-  rspec-file_fixtures
+  rspec (~> 3)
+  rspec-file_fixtures (~> 0)
   stash-rewards!
-  webmock
+  webmock (~> 3)
 
 BUNDLED WITH
    2.3.16
