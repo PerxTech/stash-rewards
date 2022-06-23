@@ -16,7 +16,14 @@ RSpec.describe Stash::Rewards::CreateUser do
         "lastName": user_identifier,
         "status": 'ACTIVE',
         "email": "#{user_identifier}@mailinator.com",
-        "phoneNumber": '+6511112223'
+        "phoneNumber": '+6511112223',
+        "address": {
+          "countryCode": 'US',
+          "street": 'string',
+          "suburb": 'string',
+          "state": 'string',
+          "postCode": 'string'
+        }
       }
     ]
   end
