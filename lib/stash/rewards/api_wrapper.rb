@@ -3,8 +3,6 @@
 require_relative '../rewards'
 
 require 'faraday'
-require 'faraday_curl'
-require 'logger'
 require 'json'
 
 module Stash
@@ -26,10 +24,9 @@ module Stash
       end
 
       def api_wrapper
-        logger = Logger.new(STDOUT)
         @api_wrapper ||= Faraday.new(url: @config.api_domain, headers: headers) do |f|
-          f.request :url_encoded if @url_encoded
-          f.request :curl, logger, :warn
+          f.adapter :typhoeus
+          f.request :url_encoded
         end
       end
     end
