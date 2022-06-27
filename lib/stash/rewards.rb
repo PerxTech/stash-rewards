@@ -1,5 +1,6 @@
 require_relative 'rewards/version'
 require_relative 'rewards/api_wrapper'
+require_relative 'rewards/response'
 require_relative 'rewards/config'
 require_relative 'rewards/create_user'
 require_relative 'rewards/enrol_user_in_campaign'

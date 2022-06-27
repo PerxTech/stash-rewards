@@ -9,11 +9,11 @@ module Stash
         response = api_wrapper.post("campaigns/#{campaign_id}/users") do |req|
           req.body = user_payload(user_identifier)
         end
-        parsed_response = JSON.parse(response.body)
 
-        raise Stash::Rewards::Error, parsed_response['message'] unless response.success?
+        response = Stash::Rewards::Response.new(api_response)
+        raise Stash::Rewards::Error, response.error_message if response.error?
 
-        parsed_response
+        response
       rescue Faraday::Error => e
         raise Stash::Rewards::Error, e.message
       end

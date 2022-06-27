@@ -6,14 +6,14 @@ module Stash
   module Rewards
     class CreateUser < ApiWrapper
       def call(user_identifier:)
-        response = api_wrapper.post('users') do |req|
+        api_response = api_wrapper.post('users') do |req|
           req.body = user_payload(user_identifier)
         end
-        parsed_response = JSON.parse(response.body)
 
-        raise Stash::Rewards::Error, parsed_response['message'] unless response.success?
+        response = Stash::Rewards::Response.new(api_response)
+        raise Stash::Rewards::Error, response.error_message if response.error?
 
-        parsed_response
+        response
       rescue Faraday::Error => e
         raise Stash::Rewards::Error, e.message
       end
