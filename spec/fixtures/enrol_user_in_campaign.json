@@ -1,12 +1,13 @@
 {
-  "success": {},
-  "error": {
-    "code": 1061,
+  "success": {
     "data": [
       {
-        "allocatedAmount": 0,
-        "refId": "62ac195f1807e2d597f55848"
+        "userId": "62b98b8a0e6f4ea6aca77f21",
+        "refId": "200002001176518"
       }
     ]
+  },
+  "error": {
+    "data": []
   }
 }
