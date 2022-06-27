@@ -6,7 +6,7 @@ module Stash
   module Rewards
     class IssueVoucher < ApiWrapper
       def call(campaign_id:, user_identifier:, reward_id:)
-        response = api_wrapper.post("campaigns/#{campaign_id}/users/refId_#{user_identifier}/rewards/order") do |req|
+        api_response = api_wrapper.post("campaigns/#{campaign_id}/users/refId_#{user_identifier}/rewards/order") do |req|
           req.body = order_payload(reward_id)
         end
         response = Stash::Rewards::Response.new(api_response)
