@@ -28,7 +28,7 @@ RSpec.describe Stash::Rewards::GetRewards do
     context 'when no page_no and page_size are passed' do
       it 'tries to get the rewards available for the campaign with default params' do
         response = get_rewards.call(campaign_id: campaign_id)
-        expect(response).to eq fixture_json
+        expect(response.payload).to eq fixture_json
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe Stash::Rewards::GetRewards do
 
       it 'takes that in account and passes the correct parameters' do
         response = get_rewards.call(campaign_id: campaign_id, page_no: page_no, page_size: page_size)
-        expect(response).to eq fixture_json
+        expect(response.payload).to eq fixture_json
       end
     end
   end
