@@ -6,7 +6,7 @@ module Stash
   module Rewards
     class EnrolUserInCampaign < ApiWrapper
       def call(campaign_id:, user_identifier:)
-        response = api_wrapper.post("campaigns/#{campaign_id}/users") do |req|
+        api_response = api_wrapper.post("campaigns/#{campaign_id}/users") do |req|
           req.body = user_payload(user_identifier)
         end
 
