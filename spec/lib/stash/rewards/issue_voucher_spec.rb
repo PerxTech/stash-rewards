@@ -38,7 +38,7 @@ RSpec.describe Stash::Rewards::IssueVoucher do
 
     it 'returns the redemption Id list' do
       response = issue_voucher.call(campaign_id: campaign_id, user_identifier: user_identifier, reward_id: stash_reward_id)
-      expect(response).to eq fixture_json
+      expect(response.payload).to eq fixture_json
     end
   end
 end

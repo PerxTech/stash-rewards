@@ -35,7 +35,7 @@ RSpec.describe Stash::Rewards::CreateUser do
 
     it 'returns the user refId and userId' do
       response = create_user.call(user_identifier: user_identifier)
-      expect(response).to eq fixture_json
+      expect(response.payload).to eq fixture_json
     end
   end
 end

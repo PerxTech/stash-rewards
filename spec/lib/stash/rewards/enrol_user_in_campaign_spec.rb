@@ -26,7 +26,7 @@ RSpec.describe Stash::Rewards::EnrolUserInCampaign do
 
     it 'returns the user refId' do
       response = enrol_user.call(campaign_id: campaign_id, user_identifier: user_identifier)
-      expect(response).to eq fixture_json
+      expect(response.payload).to eq fixture_json
     end
   end
 end
