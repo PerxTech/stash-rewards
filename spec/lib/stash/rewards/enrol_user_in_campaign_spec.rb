@@ -13,9 +13,7 @@ RSpec.describe Stash::Rewards::EnrolUserInCampaign do
 
   before do
     stub_request(:post, "https://ext-stg.api.stashnextgen.io/campaigns/#{campaign_id}/users")
-      .with(headers: { 'Accept' => '*/*',
-                       'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                       'Authorization' => '456',
+      .with(headers: { 'Authorization' => '456',
                        'Content-Type' => 'application/json',
                        'User-Agent' => 'Faraday v1.10.0',
                        'X-Api-Key' => '123' },
