@@ -3,8 +3,8 @@ require_relative 'lib/stash/rewards/version'
 Gem::Specification.new do |spec|
   spec.name          = 'stash-rewards'
   spec.version       = Stash::Rewards::VERSION
-  spec.authors       = ['Rui Baltazar']
-  spec.email         = ['rui.p.baltazar@gmail.com']
+  spec.authors       = ['Rui Baltazar', 'Aayush Jain']
+  spec.email         = ['rui.p.baltazar@gmail.com', 'aayush@perxtech.com']
 
   spec.summary       = 'Gem with API wrapper for Stash Rewards'
   spec.description   = 'Helper Library to make api calls to stash rewards'
