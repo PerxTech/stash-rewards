@@ -14,7 +14,7 @@
   "denominations": [
       {
           "label": "₫100.000 Gong Cha",
-          "price": 0,
+          "price": 10,
           "availability": "IN_STOCK"
       }
   ],
