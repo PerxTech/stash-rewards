@@ -6,7 +6,7 @@ module Stash
   module Rewards
     class GetReward < ApiWrapper
       def call(campaign_id:, reward_id:)
-        api_response = api_wrapper.post("campaigns/#{campaign_id}/rewards/#{reward_id}")
+        api_response = api_wrapper.get("campaigns/#{campaign_id}/rewards/#{reward_id}")
         response = Stash::Rewards::Response.new(api_response)
         raise Stash::Rewards::Error, response.error_message if response.error?
 

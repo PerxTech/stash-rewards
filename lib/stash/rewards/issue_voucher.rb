@@ -6,7 +6,7 @@ module Stash
   module Rewards
     class IssueVoucher < ApiWrapper
       def call(campaign_id:, user_identifier:, reward_id:, quantity: 1)
-        price = reward_price(reward_id)
+        price = reward_price(reward_id, campaign_id)
 
         api_response = api_wrapper.post("campaigns/#{campaign_id}/users/refId_#{user_identifier}/rewards/order") do |req|
           req.body = order_payload(reward_id, quantity, price)
@@ -21,12 +21,13 @@ module Stash
 
       private
 
-      def reward_price
-        reward_response = ::Stash::Rewards::GetReward.call(reward_id)
-        response = Stash::Rewards::Response.new(reward_response)
+      def reward_price(reward_id, campaign_id)
+        get_reward_api = ::Stash::Rewards::GetReward.new(@config)
+        response = get_reward_api.call(reward_id: reward_id, campaign_id: campaign_id)
         raise Stash::Rewards::Error, response.error_message if response.error?
 
-        response.payload.dig('denonminations')[0].dig('price')
+        reward = Stash::Rewards::StashReward.new(response.payload)
+        reward.prices[0]['price'] || 0
       end
 
       def order_payload(reward_id, quantity, price)
