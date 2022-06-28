@@ -1,0 +1,28 @@
+{
+  "rewardId": "625d423fa02da70009bdbd11",
+  "rewardName": "₫100.000 Gong Cha",
+  "rewardFormat": "DIGITAL",
+  "description": "Gong Cha Viet Nam là một trong những điểm đến thân thuộc của các bạn trẻ \r\nyêu thích văn hóa trà sữa và mong muốn trải nghiệm sản phẩm trà uy tín chất lượng với nguồn gốc xuất xứ rõ ràng.",
+  "rewardCode": "691evbq",
+  "market": "VN",
+  "images": {
+      "landscape": "https://stg.wogi.dev/uploads/brands/143/image.jpg",
+      "logo": "https://stg.wogi.dev/uploads/brands/143/logo.jpg",
+      "portrait": "https://stg.wogi.dev/uploads/brands/143/image.jpg",
+      "thumbnail": "https://stg.wogi.dev/uploads/brands/143/image.jpg"
+  },
+  "denominations": [
+      {
+          "label": "₫100.000 Gong Cha",
+          "price": 0,
+          "availability": "IN_STOCK"
+      }
+  ],
+  "validity": {
+      "duration": 180,
+      "date": null
+  },
+  "instruction": "Vui lòng xuất trình đường link nhận quà có chứa mã evoucher (QR code hoặc Barcode với 8 ký tự) cho nhân viên tại quầy trước khi thanh toán để được áp dụng evoucher. ",
+  "longDescription": "Thương hiệu Gong Cha được công ty TNHH Golden Trust chính thức đưa vào hoạt động tại thị trường Việt Nam từ ngày 11/10/2014.Trải qua hơn năm năm hoạt động, công ty TNHH Golden Trust – đơn vị nhượng quyền độc quyền của Gong Cha tại Việt Nam, đã đưa thương hiệu phát triển nhanh chóng và trở thành một trong những điểm đến thân thuộc của các bạn trẻ yêu thích văn hóa trà sữa và mong muốn trải nghiệm sản phẩm trà uy tín chất lượng với nguồn gốc xuất xứ rõ ràng.\r\n An toàn, vệ sinh và ngon miệng. Việc sử dụng các nguyên liệu an toàn, tự nhiên và vệ sinh là ưu tiên hàng đầu của Gong Cha. Hương vị tuyệt hảo của các món thức uống là mục đích quan trọng tiếp theo mà chúng tôi muốn hướng đến. Gong Cha mong muốn làm hài lòng khách hàng tốt nhất với tác phong phục vụ chuyên nghiệp và thân thiện, luôn lắng nghe những đóng góp của khách hàng. Dựa trên hai nền tảng cốt lõi là Chất Lượng và Dịch Vụ, Gong Cha luôn nỗ lực xây dựng và duy trì hình ảnh thương hiệu đáng tin cậy trong mắt khách hàng.\r\n",
+  "termsAndConditions": "    • Đến trực tiếp tại chuỗi cửa hàng của GONG CHA để đổi quà.\r\n    • Hạn sử dụng của evoucher được hiển thị ở trên evoucher\r\n    • E-voucher được áp dụng tại tất cả địa điểm kinh doanh của GONG CHA\r\n    • E-voucher được sử dụng kết hợp với các chương trình quà tặng, khuyến mãi khác như cộng điểm qua app Gong Cha E-member của GONG CHA, giảm giá. \r\n    • Áp dụng cho tất cả các ngày trong tuần, ngày lễ, ngày tết.\r\n    • Chỉ sử dụng 01 evoucher cho 1 hoá đơn. Evoucher sẽ không được hoàn lại tiền thừa và không có giá trị quy đổi thành tiền mặt.\r\n    • Cả Wogi và GONG CHA không chịu trách nhiệm trong trường hợp evoucher bị mất cắp, quá hạn sử dụng, đồng thời cũng không có nghĩa vụ thay thế hoặc đền bù giá trị cho chủ nhân của evoucher.\r\n    • GONG CHA có quyền từ chối nhận evoucher nếu bị coi là giả mạo hoặc hết hạn.\r\n    • Không áp dụng cho giao hàng\r\n    • Vui lòng xem thêm thông tin Menu thức uống tại website của GONG CHA để biết thêm chi tiết: http://gongcha.com.vn/\r\n"
+}

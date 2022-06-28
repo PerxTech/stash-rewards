@@ -16,7 +16,7 @@ RSpec.describe Stash::Rewards::IssueVoucher do
         {
           "rewardId": stash_reward_id,
           "price": 0,
-          "quantity": 0
+          "quantity": 1
         }
       ]
     }
@@ -36,8 +36,19 @@ RSpec.describe Stash::Rewards::IssueVoucher do
   describe '#call' do
     let(:fixture_json) { JSON.parse(fixture('issue_voucher.json').read) }
 
+    before do
+      allow(issue_voucher).to receive(:reward_price).with(stash_reward_id, campaign_id).and_return(0)
+    end
+
+    it 'checks for the reward price' do
+      issue_voucher.call(campaign_id: campaign_id, user_identifier: user_identifier, reward_id: stash_reward_id)
+
+      expect(issue_voucher).to have_received(:reward_price).with(stash_reward_id, campaign_id).once
+    end
+
     it 'returns the redemption Id list' do
       response = issue_voucher.call(campaign_id: campaign_id, user_identifier: user_identifier, reward_id: stash_reward_id)
+
       expect(response.payload).to eq fixture_json
     end
   end
