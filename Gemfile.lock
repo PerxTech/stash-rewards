@@ -3,6 +3,7 @@ PATH
   specs:
     stash-rewards (0.0.3)
       faraday (~> 1)
+      sorbet-runtime
       typhoeus (~> 1)
 
 GEM
@@ -60,6 +61,10 @@ GEM
       rspec-support (~> 3.11.0)
     rspec-support (3.11.0)
     ruby2_keywords (0.0.5)
+    sorbet (0.5.10127)
+      sorbet-static (= 0.5.10127)
+    sorbet-runtime (0.5.10127)
+    sorbet-static (0.5.10127-universal-darwin-20)
     typhoeus (1.4.0)
       ethon (>= 0.9.0)
     webmock (3.14.0)
@@ -74,6 +79,7 @@ DEPENDENCIES
   rake (~> 12.0)
   rspec (~> 3)
   rspec-file_fixtures (~> 0)
+  sorbet
   stash-rewards!
   webmock (~> 3)
 
