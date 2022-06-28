@@ -15,7 +15,7 @@ RSpec.describe Stash::Rewards::IssueVoucher do
       "products": [
         {
           "rewardId": stash_reward_id,
-          "price": 0,
+          "price": 10,
           "quantity": 1
         }
       ]
@@ -31,20 +31,18 @@ RSpec.describe Stash::Rewards::IssueVoucher do
                        'X-Api-Key' => '123' },
             body: order_payload.to_json)
       .to_return(status: 200, body: fixture_json.to_json, headers: {})
+
+    stub_request(:get, "https://ext-stg.api.stashnextgen.io/campaigns/#{campaign_id}/rewards/#{stash_reward_id}")
+      .with(headers: { 'Authorization' => '456',
+                       'Content-Type' => 'application/json',
+                       'User-Agent' => 'Faraday v1.10.0',
+                       'X-Api-Key' => '123' })
+      .to_return(status: 200, body: reward_json.to_json, headers: {})
   end
 
   describe '#call' do
     let(:fixture_json) { JSON.parse(fixture('issue_voucher.json').read) }
-
-    before do
-      allow(issue_voucher).to receive(:reward_price).with(stash_reward_id, campaign_id).and_return(0)
-    end
-
-    it 'checks for the reward price' do
-      issue_voucher.call(campaign_id: campaign_id, user_identifier: user_identifier, reward_id: stash_reward_id)
-
-      expect(issue_voucher).to have_received(:reward_price).with(stash_reward_id, campaign_id).once
-    end
+    let(:reward_json) { JSON.parse(fixture('get_reward.json').read) }
 
     it 'returns the redemption Id list' do
       response = issue_voucher.call(campaign_id: campaign_id, user_identifier: user_identifier, reward_id: stash_reward_id)
