@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install stash-rewards --pre
+    $ gem install stash-rewards
 
 ## Usage
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stash-rewards (0.0.2)
+    stash-rewards (0.0.3)
       faraday (~> 1)
       typhoeus (~> 1)
 
