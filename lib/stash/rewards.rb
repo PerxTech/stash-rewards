@@ -1,3 +1,4 @@
+# typed: strict
 require_relative 'rewards/version'
 require_relative 'rewards/api_wrapper'
 require_relative 'rewards/response'

@@ -1,3 +1,4 @@
+# typed: strict
 # frozen_string_literal: true
 
 require_relative '../rewards'
@@ -8,6 +9,7 @@ require 'json'
 module Stash
   module Rewards
     class ApiWrapper
+      sig { params(config: T::Hash[Symbol, String], url_encoded: T::Boolean).void }
       def initialize(config, url_encoded = true)
         @config = config
         @url_encoded = url_encoded
