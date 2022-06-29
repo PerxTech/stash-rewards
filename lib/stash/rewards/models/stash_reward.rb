@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'price'
-require_relative 'image'
 require_relative 'validity'
 
 module Stash
@@ -23,7 +22,7 @@ module Stash
           @long_description = reward_payload['longDescription']
           @terms_and_conditions = reward_payload['termsAndConditions']
           @prices = load_prices(reward_payload['denominations'])
-          @images = load_images(reward_payload['images'])
+          @images = reward_payload['images']
           @validity = ::Stash::Rewards::Models::Validity.new(reward_payload['validity'])
         end
 
@@ -35,10 +34,6 @@ module Stash
 
         def load_prices(prices_list = [])
           prices_list.map { |price| ::Stash::Rewards::Models::Price.new(price) }
-        end
-
-        def load_images(images_list = [])
-          images_list.map { |image| ::Stash::Rewards::Models::Image.new(image) }
         end
       end
     end
