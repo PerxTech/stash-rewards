@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Stash::Rewards::StashReward do
+RSpec.describe Stash::Rewards::Models::StashReward do
   subject { described_class }
 
   let(:object) { subject.new(fixture_json) }

@@ -26,7 +26,7 @@ module Stash
         response = get_reward_api.call(reward_id: reward_id, campaign_id: campaign_id)
         raise Stash::Rewards::Error, response.error_message if response.error?
 
-        reward = Stash::Rewards::StashReward.new(response.payload)
+        reward = Stash::Rewards::Models::StashReward.new(response.payload)
         reward.prices[0]['price'] || 0
       end
 
