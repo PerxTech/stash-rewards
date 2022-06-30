@@ -7,7 +7,7 @@ require_relative 'rewards/enrol_user_in_campaign'
 require_relative 'rewards/get_rewards'
 require_relative 'rewards/get_reward'
 require_relative 'rewards/issue_voucher'
-require_relative 'rewards/stash_reward'
+require_relative 'rewards/models/stash_reward'
 
 module Stash
   module Rewards
