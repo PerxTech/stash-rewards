@@ -35,7 +35,7 @@ module Stash
 
       def error_payload
         error_data = payload.dig('error', 'data')
-        return nil if error_data.empty?
+        return nil if error_data.nil? || error_data.empty?
 
         error_data.map { |error| error['message'] }.join(', ')
       end
