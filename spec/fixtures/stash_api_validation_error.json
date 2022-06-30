@@ -1,0 +1,15 @@
+{
+  "success": {
+    "data": []
+  },
+  "error": {
+    "code": 3016,
+    "message": "Users are failed validations",
+    "data": [
+      {
+        "refId": "user_identifier_2",
+        "message": "refId is duplicated., Email is duplicated."
+      }
+    ]
+  }
+}
