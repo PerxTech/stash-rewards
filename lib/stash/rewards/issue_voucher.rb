@@ -27,7 +27,7 @@ module Stash
         raise Stash::Rewards::Error, response.error_message if response.error?
 
         reward = Stash::Rewards::Models::StashReward.new(response.payload)
-        reward.prices[0]['price'] || 0
+        reward.prices[0].price || 0
       end
 
       def order_payload(reward_id, quantity, price)
